@@ -17,10 +17,11 @@ import static org.hamcrest.Matchers.hasItems;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
 
 @ExtendWith(MockitoExtension.class)
-class HotelsControllerTest {
+class HotelControllerTest {
 
     private final List<Hotel> expectedHotels = Arrays.asList(
             new Hotel(1L, "Molina Larios", "Malaga Centro", 9F),
@@ -33,15 +34,15 @@ class HotelsControllerTest {
     );
 
     @InjectMocks
-    HotelsController controller;
+    HotelController controller;
 
     @Mock
     HotelRepository mockRepository;
 
     @Test
-    public void getHotels_thenReturnsHotelsPage() throws Exception {
+    public void getHotels_thenReturnsHotelsPageWithHotelList() throws Exception {
 
-        when(mockRepository.findHotels()).thenReturn(expectedHotels);
+        when(mockRepository.findAll()).thenReturn(expectedHotels);
 
         MockMvc mockMvc = standaloneSetup(controller)
                 .setSingleView(new InternalResourceView("/WEB-INF/views/hotels.jsp"))
@@ -51,6 +52,19 @@ class HotelsControllerTest {
                 .andExpect(model().attributeExists("hotelList"))
                 .andExpect(model().attribute("hotelList", hasItems(expectedHotels.toArray())));
 
+    }
+
+    @Test
+    public void getHotelById_givenAHotelId_whenHotelIsFound_thenReturnsHotelPageWithHotel() throws Exception {
+
+        when(mockRepository.findById(1)).thenReturn(expectedHotels.get(0));
+
+        MockMvc mockMvc = standaloneSetup(controller).build();
+
+        mockMvc.perform(get("/hotels/1"))
+                .andExpect(view().name("hotel"))
+                .andExpect(model().attributeExists("hotel"))
+                .andExpect(model().attribute("hotel", expectedHotels.get(0)));
     }
 
 }

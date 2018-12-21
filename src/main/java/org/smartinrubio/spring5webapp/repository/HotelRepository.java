@@ -1,5 +1,6 @@
 package org.smartinrubio.spring5webapp.repository;
 
+import org.smartinrubio.spring5webapp.exception.HotelNotFoundException;
 import org.smartinrubio.spring5webapp.model.Hotel;
 import org.springframework.stereotype.Repository;
 
@@ -19,7 +20,14 @@ public class HotelRepository {
 
     );
 
-    public List<Hotel> findHotels() {
+    public List<Hotel> findAll() {
         return hotels;
+    }
+
+    public Hotel findById(long id) {
+        return hotels.stream()
+                .filter(hotel -> hotel.getId() == id)
+                .findFirst()
+                .orElseThrow(() -> new HotelNotFoundException("Hotel not Found"));
     }
 }

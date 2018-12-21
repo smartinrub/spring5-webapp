@@ -11,6 +11,7 @@
                 <h1>Welcome to Sotels</h1>
             </div>
             <a href="<c:url value="/hotels"/> ">Hotels</a>
+            <a href="<c:url value="/user/register"/> ">Register</a>
         </div>
     </body>
 </html>
