@@ -28,20 +28,20 @@ public class WebConfig implements WebMvcConfigurer {
         return resolver;
     }
 
-    @Bean
-    public MultipartResolver multipartResolver() {
-        return new CommonsMultipartResolver();
-    }
-
 //    @Bean
-//    public MultipartResolver multipartResolver() throws IOException {
-//        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
-//
-//        multipartResolver.setUploadTempDir(new FileSystemResource("/tmp/sotels/uploads"));
-//        multipartResolver.setMaxUploadSize(2097152);
-//        multipartResolver.setMaxInMemorySize(0);
-//        return multipartResolver;
+//    public MultipartResolver multipartResolver() {
+//        return new CommonsMultipartResolver();
 //    }
+
+    @Bean
+    public MultipartResolver multipartResolver() throws IOException {
+        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
+
+        multipartResolver.setUploadTempDir(new FileSystemResource("/tmp/sotels/uploads"));
+        multipartResolver.setMaxUploadSize(5 * 1024 * 1024);
+        multipartResolver.setMaxInMemorySize(0);
+        return multipartResolver;
+    }
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {

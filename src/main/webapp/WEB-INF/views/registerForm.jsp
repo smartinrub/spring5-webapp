@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="container">
-        <form action="/user/register" method="POST" enctype="multipart/form-data">
+        <form action="<c:url value="/user/register"/>" method="POST" enctype="multipart/form-data">
             <div class="form-group row">
                 <label for="first-name-input" class="col-2 col-form-label">First Name</label>
                 <div class="col-10">
