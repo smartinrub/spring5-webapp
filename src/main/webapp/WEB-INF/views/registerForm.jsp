@@ -4,7 +4,7 @@
 <html>
 <head>
     <title>Register Form - Sotels</title>
-    <link href="<c:url value="/resources/bootstrap.min.css" />" rel="stylesheet" />
+    <link href="<c:url value="/resources/css/bootstrap.min.css" />" rel="stylesheet" />
 </head>
 <body>
     <div class="container">

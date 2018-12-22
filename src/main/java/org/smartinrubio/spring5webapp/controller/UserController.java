@@ -23,14 +23,14 @@ public class UserController {
     }
 
     @GetMapping("/register")
-    public String showRegistrationForm() {
+    public String userForm() {
         return "registerForm";
     }
 
     @PostMapping("/register")
-    public String submitRegistrationForm(@RequestPart("profilePicture") MultipartFile profilePicture,
-                                         @Valid User user,
-                                         Errors errors) throws IOException {
+    public String userSubmit(@RequestPart("profilePicture") MultipartFile profilePicture,
+                             @Valid User user,
+                             Errors errors) throws IOException {
 
         if (errors.hasErrors()) {
             return "registerForm";

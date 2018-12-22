@@ -36,14 +36,14 @@ class UserControllerTest {
     }
 
     @Test
-    public void showRegistrationForm_thenReturnRegistrationPage() throws Exception {
+    public void userForm_thenReturnRegistrationPage() throws Exception {
 
         mockMvc.perform(get("/user/register"))
                 .andExpect(view().name("registerForm"));
     }
 
     @Test
-    public void submitRegistrationForm_thenSaveUser() throws Exception {
+    public void userSubmit_thenSaveUser() throws Exception {
         User userToSave = new User("Sergio", "Martin", "sergio@gmail.com", "password");
 
         repository.save(userToSave);
