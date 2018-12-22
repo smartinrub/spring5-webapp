@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.io.IOException;
@@ -30,7 +31,8 @@ public class UserController {
     @PostMapping("/register")
     public String userSubmit(@RequestPart("profilePicture") MultipartFile profilePicture,
                              @Valid User user,
-                             Errors errors) throws IOException {
+                             Errors errors,
+                             RedirectAttributes model) throws IOException {
 
         if (errors.hasErrors()) {
             return "registerForm";
@@ -40,12 +42,17 @@ public class UserController {
         FileManager.saveFile(profilePicture);
 
         User savedUser = userRepository.save(user);
-        return "redirect:/user/" + savedUser.getFirstName().toLowerCase();
+
+        model.addAttribute("firstName", savedUser.getFirstName().toLowerCase());
+        model.addFlashAttribute("user", savedUser);
+        return "redirect:/user/{firstName}";
     }
 
     @GetMapping("/{name}")
     public String getUserByName(@PathVariable("name") String name, Model model) {
-        model.addAttribute(userRepository.findByName(name));
+        if (!model.containsAttribute("user")) {
+            model.addAttribute(userRepository.findByName(name));
+        }
         return "user";
     }
 }
