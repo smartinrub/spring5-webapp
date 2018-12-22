@@ -28,6 +28,6 @@ public class HotelRepository {
         return hotels.stream()
                 .filter(hotel -> hotel.getId() == id)
                 .findFirst()
-                .orElseThrow(() -> new HotelNotFoundException("Hotel not Found"));
+                .orElseThrow(HotelNotFoundException::new);
     }
 }

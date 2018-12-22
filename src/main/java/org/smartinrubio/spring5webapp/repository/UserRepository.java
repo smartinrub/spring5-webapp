@@ -1,5 +1,6 @@
 package org.smartinrubio.spring5webapp.repository;
 
+import org.smartinrubio.spring5webapp.exception.UserNotFoundException;
 import org.smartinrubio.spring5webapp.model.User;
 import org.springframework.stereotype.Repository;
 
@@ -13,16 +14,13 @@ public class UserRepository {
 
     public User save(User user) {
         users.add(user);
-        return users.stream()
-                .filter(savedUser -> savedUser.getFirstName().equals(user.getFirstName()))
-                .findFirst()
-                .orElseThrow(RuntimeException::new);
+        return user;
     }
 
     public User findByName(String name) {
         return users.stream()
                 .filter(user -> user.getFirstName().equals(name))
                 .findFirst()
-                .orElseThrow(RuntimeException::new);
+                .orElseThrow(UserNotFoundException::new);
     }
 }
