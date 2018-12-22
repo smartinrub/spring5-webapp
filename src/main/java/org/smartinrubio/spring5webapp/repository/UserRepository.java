@@ -9,9 +9,20 @@ import java.util.List;
 @Repository
 public class UserRepository {
 
-    private List<User> users = new ArrayList<>();
+    private static List<User> users = new ArrayList<>();
 
-    public void save(User user) {
+    public User save(User user) {
         users.add(user);
+        return users.stream()
+                .filter(savedUser -> savedUser.getFirstName().equals(user.getFirstName()))
+                .findFirst()
+                .orElseThrow(RuntimeException::new);
+    }
+
+    public User findByName(String name) {
+        return users.stream()
+                .filter(user -> user.getFirstName().equals(name))
+                .findFirst()
+                .orElseThrow(RuntimeException::new);
     }
 }
