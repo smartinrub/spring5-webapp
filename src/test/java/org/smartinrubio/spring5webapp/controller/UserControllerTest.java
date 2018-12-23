@@ -1,20 +1,20 @@
 package org.smartinrubio.spring5webapp.controller;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.smartinrubio.spring5webapp.model.Hotel;
 import org.smartinrubio.spring5webapp.model.User;
 import org.smartinrubio.spring5webapp.repository.UserRepository;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
@@ -46,13 +46,25 @@ class UserControllerTest {
     public void userSubmit_thenSaveUser() throws Exception {
         User userToSave = new User("Sergio", "Martin", "sergio@gmail.com", "password");
 
+        when(repository.save(any(User.class))).thenReturn(userToSave);
+
         repository.save(userToSave);
 
-        mockMvc.perform(post("/user/register")
-                .param("firstName", "Sergio")
-                .param("lastName", "Martin")
-                .param("email", "sergio@gmail.com")
-                .param("password", "password"))
+        MockMultipartFile firstFile = new MockMultipartFile(
+                "profilePicture",
+                "profilePicture.png",
+                "image/png",
+                "profilePicture".getBytes());
+
+
+        mockMvc.perform(
+                MockMvcRequestBuilders.multipart("/user/register")
+                        .file(firstFile)
+                        .param("some-random", "4")
+                        .param("firstName", userToSave.getFirstName())
+                        .param("lastName", userToSave.getLastName())
+                        .param("email", userToSave.getEmail())
+                        .param("password", userToSave.getPassword()))
                 .andExpect(redirectedUrl("/user/sergio"));
 
         verify(repository, atLeastOnce()).save(userToSave);
