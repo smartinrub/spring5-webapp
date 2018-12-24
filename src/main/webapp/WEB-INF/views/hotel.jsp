@@ -7,6 +7,10 @@
 </head>
 <body>
     <div class="container">
+        <div class="jumbotron" style="margin-bottom:0;">
+            <h1>Hotel Details</h1>
+        </div>
+        <c:import url = "/WEB-INF/views/navbar.jsp"/>
         <div class="h2"><c:out value="${hotel.name}"/></div>
         <div>
             <span class="label label-info"><c:out value="${hotel.address}"/></span>

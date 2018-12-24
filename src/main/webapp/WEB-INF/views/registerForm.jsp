@@ -4,44 +4,52 @@
 <html>
 <head>
     <title>Register Form - Sotels</title>
-    <link href="<c:url value="/resources/css/bootstrap.min.css" />" rel="stylesheet" />
+    <link href="<c:url value="/resources/css/bootstrap.min.css" />" rel="stylesheet"/>
 </head>
 <body>
-    <div class="container">
-        <form action="<c:url value="/user/register"/>" method="POST" enctype="multipart/form-data">
-            <div class="form-group row">
-                <label for="first-name-input" class="col-2 col-form-label">First Name</label>
-                <div class="col-10">
-                    <input class="form-control" type="text" id="first-name-input" name="firstName">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="last-name-input" class="col-2 col-form-label">Last Name</label>
-                <div class="col-10">
-                    <input class="form-control" type="text" id="last-name-input" name="lastName">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="email-input" class="col-2 col-form-label">Email</label>
-                <div class="col-10">
-                    <input class="form-control" type="email" id="email-input" name="email">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="password-input" class="col-2 col-form-label">Password</label>
-                <div class="col-10">
-                    <input class="form-control" type="password" id="password-input" name="password">
-                </div>
-            </div>
-            <div class="form-group row">
-                <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="customFile" name="profilePicture" accept="image/jpeg,image/png,image/gif">
-                    <label class="custom-file-label" for="customFile">Choose Profile Picture</label>
-                </div>
-            </div>
-
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+<div class="container">
+    <div class="jumbotron" style="margin-bottom:0;">
+        <h1>Sign Up</h1>
     </div>
+    <c:import url="/WEB-INF/views/navbar.jsp"/>
+    <form action="<c:url value="/user/register"/>" method="POST" enctype="multipart/form-data" class="needs-validation card p-4"
+          novalidate>
+        <div class="form-row">
+            <div class="col-md-4 mb-3">
+                <label for="firstName">First name</label>
+                <input type="text" class="form-control" id="firstName" placeholder="First name" name="firstName"
+                       required>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="lastName">Last name</label>
+                <input type="text" class="form-control" id="lastName" placeholder="Last name" name="lastName" required>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="email">Email</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroupPrepend">@</span>
+                    </div>
+                    <input type="email" class="form-control" id="email" placeholder="email" name="email"
+                           aria-describedby="inputGroupPrepend" required>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-6 mb-3">
+                <label for="password">Password</label>
+                <input type="text" class="form-control" id="password" placeholder="Password" name="password" required>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="password">Profile Picture</label>
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="profilePicture" name="profilePicture" accept="image/jpeg,image/png,image/gif">
+                    <label class="custom-file-label" for="profilePicture">Choose Profile Picture</label>
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
 </body>
 </html>
