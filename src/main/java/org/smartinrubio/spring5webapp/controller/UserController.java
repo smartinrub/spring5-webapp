@@ -5,18 +5,17 @@ import org.smartinrubio.spring5webapp.repository.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
-import java.util.logging.Logger;
 
 @Controller
 @RequestMapping("/user")
 public class UserController {
-
-    private static final Logger LOGGER = Logger.getLogger(UserController.class.getName());
 
     private UserRepository userRepository;
 
@@ -30,8 +29,7 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public String userSubmit(@RequestPart("profilePicture") MultipartFile profilePicture,
-                             @Valid User user,
+    public String userSubmit(@Valid User user,
                              Errors errors,
                              RedirectAttributes model) {
 
@@ -39,16 +37,14 @@ public class UserController {
             return "registerForm";
         }
 
-        LOGGER.info("Upload: " + profilePicture.getName());
-
         User savedUser = userRepository.save(user);
 
         model.addAttribute("firstName", savedUser.getFirstName().toLowerCase());
         model.addFlashAttribute("user", savedUser);
-        return "redirect:/user/{firstName}";
+        return "redirect:/user/details/{firstName}";
     }
 
-    @GetMapping("/{name}")
+    @GetMapping("/details/{name}")
     public String getUserByName(@PathVariable("name") String name, Model model) {
         if (!model.containsAttribute("user")) {
             model.addAttribute(userRepository.findByName(name));

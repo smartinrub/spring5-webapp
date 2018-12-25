@@ -12,8 +12,13 @@
         <h1>Sign Up</h1>
     </div>
     <c:import url="/WEB-INF/views/navbar.jsp"/>
-    <form action="<c:url value="/user/register"/>" method="POST" enctype="multipart/form-data" class="needs-validation card p-4"
+    <form action="<c:url value="/user/register"/>" method="POST"
+          class="needs-validation card p-4"
           novalidate>
+        <%-- Allow Cross Site Requests --%>
+        <input type="hidden"
+               name="${_csrf.parameterName}"
+               value="${_csrf.token}"/>
         <div class="form-row">
             <div class="col-md-4 mb-3">
                 <label for="firstName">First name</label>
@@ -36,17 +41,18 @@
             </div>
         </div>
         <div class="form-row">
-            <div class="col-md-6 mb-3">
+            <div class="col-md-12 mb-3">
                 <label for="password">Password</label>
                 <input type="text" class="form-control" id="password" placeholder="Password" name="password" required>
             </div>
-            <div class="col-md-6 mb-3">
-                <label for="password">Profile Picture</label>
-                <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="profilePicture" name="profilePicture" accept="image/jpeg,image/png,image/gif">
-                    <label class="custom-file-label" for="profilePicture">Choose Profile Picture</label>
-                </div>
-            </div>
+            <%--<div class="col-md-6 mb-3">--%>
+                <%--<label for="password">Profile Picture</label>--%>
+                <%--<div class="custom-file">--%>
+                    <%--<input type="file" class="custom-file-input" id="profilePicture" name="profilePicture"--%>
+                           <%--accept="image/jpeg,image/png,image/gif">--%>
+                    <%--<label class="custom-file-label" for="profilePicture">Choose Profile Picture</label>--%>
+                <%--</div>--%>
+            <%--</div>--%>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
