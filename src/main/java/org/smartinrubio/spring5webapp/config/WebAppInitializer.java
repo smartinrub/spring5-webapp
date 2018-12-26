@@ -1,10 +1,10 @@
 package org.smartinrubio.spring5webapp.config;
 
+import org.springframework.core.env.ConfigurableEnvironment;
+import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-import javax.servlet.Filter;
-import javax.servlet.MultipartConfigElement;
-import javax.servlet.ServletRegistration;
+import javax.servlet.*;
 
 // Short way
 //public class WebAppInitializer implements WebApplicationInitializer {
@@ -41,8 +41,13 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
         return new String[]{"/"};
     }
 
+    @Override
+    public void onStartup(ServletContext servletContext) throws ServletException {
+        super.onStartup(servletContext);
+        servletContext.setInitParameter("spring.profiles.active", "dev");
+    }
 
-//    @Override
+    //    @Override
 //    protected void customizeRegistration(ServletRegistration.Dynamic registration) {
 //        registration.setMultipartConfig(
 //                new MultipartConfigElement("/tmp/sotels/uploads", 2097152, 4194304, 0)

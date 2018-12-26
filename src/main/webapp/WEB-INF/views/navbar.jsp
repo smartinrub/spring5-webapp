@@ -6,6 +6,7 @@
             <li class="nav-item"><a class="nav-link" href="<c:url value="/"/>">Home</a></li>
             <li class="nav-item"><a class="nav-link" href="<c:url value="/hotels"/>">Hotels</a></li>
             <li class="nav-item"><a class="nav-link" href="<c:url value="/user/register"/>">Register</a></li>
+            <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/logout">Logout</a></li>
         </ul>
     </div>
 </nav>
