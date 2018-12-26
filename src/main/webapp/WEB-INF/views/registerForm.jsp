@@ -46,12 +46,12 @@
                 <input type="text" class="form-control" id="password" placeholder="Password" name="password" required>
             </div>
             <%--<div class="col-md-6 mb-3">--%>
-                <%--<label for="password">Profile Picture</label>--%>
-                <%--<div class="custom-file">--%>
-                    <%--<input type="file" class="custom-file-input" id="profilePicture" name="profilePicture"--%>
-                           <%--accept="image/jpeg,image/png,image/gif">--%>
-                    <%--<label class="custom-file-label" for="profilePicture">Choose Profile Picture</label>--%>
-                <%--</div>--%>
+            <%--<label for="password">Profile Picture</label>--%>
+            <%--<div class="custom-file">--%>
+            <%--<input type="file" class="custom-file-input" id="profilePicture" name="profilePicture"--%>
+            <%--accept="image/jpeg,image/png,image/gif">--%>
+            <%--<label class="custom-file-label" for="profilePicture">Choose Profile Picture</label>--%>
+            <%--</div>--%>
             <%--</div>--%>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>

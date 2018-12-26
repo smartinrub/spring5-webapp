@@ -10,7 +10,7 @@
     <div class="jumbotron" style="margin-bottom:0;">
         <h1>Welcome to Sotels</h1>
     </div>
-    <c:import url = "/WEB-INF/views/navbar.jsp"/>
+    <c:import url="/WEB-INF/views/navbar.jsp"/>
 </div>
 </body>
 </html>

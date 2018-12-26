@@ -65,7 +65,7 @@ class UserControllerTest {
                         .param("lastName", userToSave.getLastName())
                         .param("email", userToSave.getEmail())
                         .param("password", userToSave.getPassword()))
-                .andExpect(redirectedUrl("/user/sergio"));
+                .andExpect(redirectedUrl("/user/details/sergio"));
 
         verify(repository, atLeastOnce()).save(userToSave);
     }
