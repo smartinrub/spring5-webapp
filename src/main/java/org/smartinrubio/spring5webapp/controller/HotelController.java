@@ -1,6 +1,7 @@
 package org.smartinrubio.spring5webapp.controller;
 
-import org.smartinrubio.spring5webapp.repository.JdbcHotelRepository;
+import org.smartinrubio.spring5webapp.exception.HotelNotFoundException;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/hotels")
 public class HotelController {
 
-    private JdbcHotelRepository jdbcHotelRepository;
+    private JpaRepository jdbcHotelRepository;
 
-    public HotelController(JdbcHotelRepository hotelRepository) {
+    public HotelController(JpaRepository hotelRepository) {
         this.jdbcHotelRepository = hotelRepository;
     }
 
@@ -24,8 +25,8 @@ public class HotelController {
     }
 
     @GetMapping("/{hotelId}")
-    public String getHotelById(@PathVariable("hotelId") long id, Model model) {
-        model.addAttribute(jdbcHotelRepository.findById(id));
+    public String getHotelById(@PathVariable("hotelId") long id, Model model) throws Throwable {
+        model.addAttribute(jdbcHotelRepository.findById(id).orElseThrow(HotelNotFoundException::new));
         return "hotel";
     }
 
