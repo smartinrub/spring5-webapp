@@ -15,8 +15,8 @@ import java.util.List;
 @Repository
 public class JdbcHotelRepository implements HotelRepository {
 
-    private static final String SELECT_ALL_HOTELS = "SELECT * FROM hotels";
-    private static final String SELECT_HOTEL_BY_ID = "SELECT * FROM hotels WHERE id = ?";
+    private static final String SELECT_ALL_HOTELS = "SELECT * FROM hotel";
+    private static final String SELECT_HOTEL_BY_ID = "SELECT * FROM hotel WHERE id = ?";
 
     private JdbcOperations jdbcOperations;
 

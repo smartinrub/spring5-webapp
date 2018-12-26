@@ -1,6 +1,6 @@
-CREATE TABLE IF NOT EXISTS `hotels` (
-    `id` FLOAT NOT NULL PRIMARY KEY,
-    `name` VARCHAR(50) NOT NULL,
-    `address` VARCHAR(50) NOT NULL,
-    `rating` FLOAT NOT NULL,
+CREATE TABLE IF NOT EXISTS hotel (
+    id IDENTITY PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    address VARCHAR(50) NOT NULL,
+    rating FLOAT NOT NULL,
   );

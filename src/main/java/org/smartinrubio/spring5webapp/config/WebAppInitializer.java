@@ -32,7 +32,7 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
 
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        return new Class[]{SecurityConfig.class};
+        return new Class[]{WebConfig.class};
     }
 
     @Override

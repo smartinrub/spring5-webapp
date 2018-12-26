@@ -11,21 +11,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/hotels")
 public class HotelController {
 
-    private JdbcHotelRepository hotelRepository;
+    private JdbcHotelRepository jdbcHotelRepository;
 
     public HotelController(JdbcHotelRepository hotelRepository) {
-        this.hotelRepository = hotelRepository;
+        this.jdbcHotelRepository = hotelRepository;
     }
 
     @GetMapping
     public String getHotels(Model model) {
-        model.addAttribute(hotelRepository.findAll());
+        model.addAttribute(jdbcHotelRepository.findAll());
         return "hotels";
     }
 
     @GetMapping("/{hotelId}")
     public String getHotelById(@PathVariable("hotelId") long id, Model model) {
-        model.addAttribute(hotelRepository.findById(id));
+        model.addAttribute(jdbcHotelRepository.findById(id));
         return "hotel";
     }
 
