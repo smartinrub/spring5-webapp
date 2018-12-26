@@ -10,6 +10,6 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @Configuration
 @ComponentScan(basePackages = {"org.smartinrubio.spring5webapp"},
         excludeFilters = {@Filter(type = FilterType.ANNOTATION, value = EnableWebMvc.class)})
-@Import({SecurityConfig.class})
+@Import(WebConfig.class)
 public class RootConfig {
 }

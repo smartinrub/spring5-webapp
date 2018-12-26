@@ -6,7 +6,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.smartinrubio.spring5webapp.model.Hotel;
-import org.smartinrubio.spring5webapp.repository.HotelRepository;
+import org.smartinrubio.spring5webapp.repository.JdbcHotelRepository;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.servlet.view.InternalResourceView;
 
@@ -37,7 +37,7 @@ class HotelControllerTest {
     HotelController controller;
 
     @Mock
-    HotelRepository mockRepository;
+    JdbcHotelRepository mockRepository;
 
     @Test
     public void getHotels_thenReturnsHotelsPageWithHotelList() throws Exception {
