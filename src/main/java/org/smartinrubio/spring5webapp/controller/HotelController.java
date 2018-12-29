@@ -3,6 +3,8 @@ package org.smartinrubio.spring5webapp.controller;
 import org.smartinrubio.spring5webapp.exception.HotelNotFoundException;
 import org.smartinrubio.spring5webapp.model.Hotel;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -41,6 +43,7 @@ public class HotelController {
         return "hotelForm";
     }
 
+    @PreAuthorize("hasRole('ROLE_USER') and #hotel.rating <= 7 or hasRole('ROLE_ADMIN')")
     @PostMapping("/save")
     public String createHotel(@Valid Hotel hotel,
                               Errors errors,

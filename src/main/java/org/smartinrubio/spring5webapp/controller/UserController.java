@@ -2,6 +2,7 @@ package org.smartinrubio.spring5webapp.controller;
 
 import org.smartinrubio.spring5webapp.model.User;
 import org.smartinrubio.spring5webapp.repository.UserRepository;
+import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;

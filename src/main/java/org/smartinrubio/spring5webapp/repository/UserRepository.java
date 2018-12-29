@@ -3,6 +3,7 @@ package org.smartinrubio.spring5webapp.repository;
 import org.smartinrubio.spring5webapp.exception.DuplicateUserException;
 import org.smartinrubio.spring5webapp.exception.UserNotFoundException;
 import org.smartinrubio.spring5webapp.model.User;
+import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -25,6 +26,7 @@ public class UserRepository {
         return user;
     }
 
+    @PostAuthorize("returnObject.firstName eq principal.username")
     public User findByName(String name) {
         return users.stream()
                 .filter(user -> user.getFirstName().equals(name))

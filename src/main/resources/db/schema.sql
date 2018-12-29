@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS hotel (
     id IDENTITY PRIMARY KEY,
-    name VARCHAR(50) NOT NULL,
-    address VARCHAR(50) NOT NULL,
+    name VARCHAR(200) NOT NULL,
+    address VARCHAR(200) NOT NULL,
     rating FLOAT NOT NULL,
   );

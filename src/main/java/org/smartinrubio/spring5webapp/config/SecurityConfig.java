@@ -18,12 +18,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .inMemoryAuthentication()
                 .passwordEncoder(new BCryptPasswordEncoder())
                 .withUser("user")
-                .password("$2a$04$3dqK2YgGGW8zUJnDYvyBwuR7lcTXlKiPoH.IOt94vigDmd22yYQka")
+                .password("$2a$04$3dqK2YgGGW8zUJnDYvyBwuR7lcTXlKiPoH.IOt94vigDmd22yYQka") // password
                 .roles("USER")
                 .and()
                 .passwordEncoder(new BCryptPasswordEncoder())
                 .withUser("admin")
-                .password("$2a$04$3dqK2YgGGW8zUJnDYvyBwuR7lcTXlKiPoH.IOt94vigDmd22yYQka")
+                .password("$2a$04$3dqK2YgGGW8zUJnDYvyBwuR7lcTXlKiPoH.IOt94vigDmd22yYQka") // password
                 .roles("ADMIN");
 
 //        auth.ldapAuthentication()
